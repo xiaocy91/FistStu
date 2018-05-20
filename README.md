@@ -26,6 +26,10 @@
 
 
 
+
+
+
+
 版本验证步骤
 
 1.执行usb2.0，修改case中xloader中路径为emily或者alps，运行后输入image的路径；
@@ -52,4 +56,43 @@
 8.2执行at^fblock以后，导致/data目录没有写权限了。解决办法:锁了旁路以后不要忘记解锁；另外，有的user版本确实没有写权限，此时需要执行adb root和adb amount命令就有root权限了，然后执行push操作。
 
 8.3使用小绿板执行uart命令后，导致无法识别SD卡。解决办法:需要将执行的命令再反着执行一遍。
+
+
+
+
+
+
+参数模块修改意见:
+所有的参数:
+-s,-k,-m,-p,-d,-l,-h
+
+1.nargs="*",表示任意多个参数:
+parse.add_argument("filename",nargs="*",type=init)
+说明1:运用在-m和-k和-p上。不输入参数，值为none; 输入参数，不输入值，值为列表且为空; 输入参数，输入值，值为列表且有值！
+
+2.choices选项
+说明:在choices["info","debug",""]等选项，来限制输入。且默认值为info。
+
+3.requiem=true为必须参数
+说明:在该模块没有用！
+4.默认参数
+default=默认参数
+说明:-l和-d都需要设置默认参数。-l默认为info，-d默认为Log。
+
+4.互斥参数
+parse=argparse.ArgumentParser()
+group=parse.add_mutually_exclusive_group()
+group.add_argument("-a","-aa")
+group.add_argument("-b","-bb")
+添加互斥组，在组里添加互斥参数
+说明:-k和-m和-p之间互斥
+
+5.参数不合法的话。是直接报错，还是什么？自定义异常如下:
+class ArgError(Exception):
+    def __init__(self):
+        self.arg=arg
+    def __str__(self):
+        return self.arg
+然后参数出错了就raise ArgError(arg)。
+
 
