@@ -66,6 +66,7 @@
 所有的参数:
 -s,-k,-m,-p,-d,-l,-h
 
+
 1.nargs="*",表示任意多个参数:
 parse.add_argument("filename",nargs="*",type=init)
 说明1:运用在-m和-k和-p上。不输入参数，值为none; 输入参数，不输入值，值为列表且为空; 输入参数，输入值，值为列表且有值！
