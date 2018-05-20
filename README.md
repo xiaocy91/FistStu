@@ -1,6 +1,7 @@
 
 
 提交代码步骤
+
 1.首先进入到hione/vender/tools/hibbox/mntn目录；
 
 2.然后repo sync --no--tags同步最新代码；
@@ -26,6 +27,7 @@
 
 
 版本验证步骤
+
 1.执行usb2.0，修改case中xloader中路径为emily或者alps，运行后输入image的路径；
 问题:usb2.0是基于HIDS工具的，所以要先安装该工具！
 
