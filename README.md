@@ -62,38 +62,15 @@
 
 
 
-参数模块修改意见:
-所有的参数:
--s,-k,-m,-p,-d,-l,-h
-
-
-1.nargs="*",表示任意多个参数:
-parse.add_argument("filename",nargs="*",type=init)
-说明1:运用在-m和-k和-p上。不输入参数，值为none; 输入参数，不输入值，值为列表且为空; 输入参数，输入值，值为列表且有值！
-
-2.choices选项
-说明:在choices["info","debug",""]等选项，来限制输入。且默认值为info。
-
-3.requiem=true为必须参数
-说明:在该模块没有用！
-4.默认参数
-default=默认参数
-说明:-l和-d都需要设置默认参数。-l默认为info，-d默认为Log。
-
-4.互斥参数
-parse=argparse.ArgumentParser()
-group=parse.add_mutually_exclusive_group()
-group.add_argument("-a","-aa")
-group.add_argument("-b","-bb")
-添加互斥组，在组里添加互斥参数
-说明:-k和-m和-p之间互斥
-
-5.参数不合法的话。是直接报错，还是什么？自定义异常如下:
-class ArgError(Exception):
-    def __init__(self):
-        self.arg=arg
-    def __str__(self):
-        return self.arg
-然后参数出错了就raise ArgError(arg)。
+"hava维测步骤:
+1.当一个用例出错以后，要看这个用例在本地运行是否通过，本地运行需要配置环境，包括在android.xml中配置SN号，设为当前手机的SN号;然后，在jython中新建一个运行配置名为mntn，配置运行入口为kempt/start.py文件，运行参数为work_block和selected_file_path。配置好以后，选中case中的某一个脚本，运行是选mntn运行。
+2.先看hava平台的运行脚本是基于哪个平台的，本次平台是芝加哥平台，所以需要曼哈顿手机，运行后，如果没有错误，说明可能是环境问题。
+3、看hava上的日志，日志怎么看，需要先看代码，代码中如果执行false就记录下日志，如果执行pass就不会记录日志。
+4.找到hava平台记录日志的地方，为Log/dmsg.log，这个log是在运行该脚本的。
+点进去这个任务，对应了一台电脑，电脑上对应了两个单板，然后找到任务对应的单板。
+5、putty连接到执行任务的电脑，找到mntn目录，里面又有两个日子目录，找到对应单板的日志目录，根据hava上log找到dmsg.log文件。
+6.使用scp命令，将日志复制到自己的编译云上去。
+6、在自己的云上，根据报的错误来看dmsg日志，报错""找不到关键字pref""，搜索pref确实没有找到，找到负责perf解析的负责人张琪，最后定位为log被冲掉了。
+7.然后hava上定位问题，状态为closed，描述为dmsg日志被冲，填上对应的单号(以前遇到同样问题，所以已经有单号了)。"
 
 
