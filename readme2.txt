@@ -1,27 +1,27 @@
-序号	工具	问题出处	解决方法	是否需要处理	时间
+序号	工具	问题	原因及解决方法
 1	hibbox	"西安研发：李伟
-miami平台产品JSN，用Hibox抓取dump，是空的"	"US:是user版本的问题，fasboot锁了。由于研发阶段
-They:测试手机都是user版本的，出了问题没法抓日志
-
-处理方法：不是Hibbox工具问题，不做处理"	N	2018/4/22
-
+miami平台产品JSN，用Hibox抓取dump，是空的"	"是否工具问题:N
+原因:是user版本的问题，fasboot锁了。由于研发阶段，测试手机都是user版本的，出了问题没法抓日志；"
 2	hibbox	"袁旦：
-hibbox抓包时，30_baselog概率性不生成"	"没有导完日志,因为dump中bbox.bin没有解析出来，所有日志不完整。
-处理办法：不处理"	N	2018/4/22
-
+hibbox抓包时，30_baselog概率性不生成"	"是否工具问题:N
+原因：没有导完日志,因为dump中bbox.bin没有解析出来，所有日志不完整。"
 3	hibbox	"西安：蔡志鹏
-hibbox工具打开后，提示找不到设备，但是设备已经连接好了"	"处理办法：
-fastboot、adb环境变量没设置好，用hibbox中的fastboot重新设置了环境变量就好了"	Y	2018/4/25
-
-
+hibbox工具打开后，提示找不到设备，但是设备已经连接好了"	"是否工具问题:N
+原因：fastboot、adb环境变量没设置好，用hibbox中的fastboot重新设置了环境变量就好了"
 4	hibbox	"程利华：
 1、hibbox清除log，会把snoop目录清楚掉？
-2、用工具导出/data/vendor/log目录，和手动导的不一样？"	"1、导出日志会全部导出，不仅仅为snoop；
+2、用工具导出/data/vendor/log目录，和手动导的不一样？"	"是否工具问题:N
+原因：
+1、导出日志会全部导出，不仅仅为snoop；
 2、清楚日志全部清楚，包括snoop日志；
-处理办法：可以提需求，否则不做处理"	Y	2018/5/9
-
-
-	hibbox	"秦永恒
+处理办法：可以提需求，否则不做处理"
+5	hibbox	"秦永恒
   ""rom""中(""0x15"",""samsang"")，(0x11，toshiba),(0x45,sandisk)，为什么0x11没有解析出来？对应的hibbox文件为utfs_ddr_.py文件！
-"	"ufs_addr_.py文件对rom的解析有错误
-处理办法:没有提需求，不做修改！"	Y	2018/5/14
+"	"是否工具问题:Y
+原因：
+ufs_addr_.py文件对rom的解析有错误
+处理办法:没有提需求，不做修改！"
+6	hibbox	"西安研发：李伟
+fastboot导出的文件都是0kb,且fastboot oem ddrdump show命令可以使用，只是导出来的文件是空的，且烧写的软件版本是eng版本？？？"	"是否工具问题:N
+原因：目前miami平台有问题，终端把fastboot锁了，所以fastboot不能导日志；
+处理办法：版本问题，不做处理；"
